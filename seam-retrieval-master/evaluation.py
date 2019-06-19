@@ -99,6 +99,7 @@ def encode_data(model, data_loader, log_step=10, logging=print):
             cap_embs = np.zeros((len(data_loader.dataset), cap_emb.size(1)))
 
         # preserve the embeddings by copying from gpu and converting to numpy
+	ids = list(ids)
         img_embs[ids] = img_emb.data.cpu().numpy().copy()
         cap_embs[ids] = cap_emb.data.cpu().numpy().copy()
 

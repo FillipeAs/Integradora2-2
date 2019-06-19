@@ -339,7 +339,7 @@ class VSE(object):
             self.logger.update('TotalLoss', total_loss.data[0], img_emb.size(0))
             self.logger.update('AttLoss', coef * extra_loss.data[0], img_emb.size(0))
         
-        self.logger.update('ContrLoss', loss.data[0], img_emb.size(0))
+        self.logger.update('ContrLoss', loss.data.item(), img_emb.size(0))
         return loss
 
     def train_emb(self, images, captions, lengths, ids=None, *args):
