@@ -62,7 +62,9 @@ class GRUAttentiveTextEncoder(nn.Module):
         self.att_units = att_units
 
         # word embedding
-        self.embed = nn.Embedding(vocab_size, word_dim)
+        #self.embed = nn.Embedding(vocab_size, word_dim)
+	self.embed = mynn.SlimEmbedding(vocab_size, word_dim)
+
         self.norm_words = norm_words
         # caption embedding
         self.rnn = nn.GRU(word_dim, gru_units, num_layers, batch_first=True)
@@ -118,8 +120,8 @@ class ConvAttentiveTextEncoder(nn.Module):
 
         conv_filters = 100
         # word embedding
-        self.embed = nn.Embedding(vocab_size, word_dim)
-
+        #self.embed = nn.Embedding(vocab_size, word_dim)
+	self.embed = mynn.SlimEmbedding(vocab_size, word_dim)
         self.conv1 = ConvBlock(
                         in_channels=word_dim, 
                         out_channels=conv_filters, 
@@ -197,8 +199,9 @@ class AttentiveTextEncoder(nn.Module):
         self.att_units = att_units
 
         # word embedding
-        self.embed = nn.Embedding(vocab_size, word_dim)
-        
+        #self.embed = nn.Embedding(vocab_size, word_dim)
+        self.embed = mynn.SlimEmbedding(vocab_size, word_dim)
+
         self.attention = SelfAttentiveEncoder(nb_features=word_dim, 
             att_units=att_units, hops=hops)
 
